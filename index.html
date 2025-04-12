@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roundup Delivered | Sign In</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .modal h2 {
+      margin-top: 0;
+    }
+    .modal p {
+      margin: 1rem 0;
+    }
+    .btn {
+      background: #000;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal" id="modalBox">
+    <h2>Welcome to Roundup Delivered</h2>
+    <p id="modalText">Redirecting you to login...</p>
+    <button class="btn" id="modalButton">Continue</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const modalText = document.getElementById("modalText");
+    const modalButton = document.getElementById("modalButton");
+
+    const loginURL = "https://squareup.com/login?return_to=https://roundup-delivered.square.site/";
+    const signupURL = "https://squareup.com/signup";
+
+    if (params.get("signup") === "true") {
+      modalText.textContent = "Create an account to start ordering groceries from IGA!";
+      modalButton.onclick = () => window.location.href = signupURL;
+    } else {
+      modalText.textContent = "Sign in to your account to start shopping.";
+      modalButton.onclick = () => window.location.href = loginURL;
+    }
+  </script>
+
+</body>
+</html>
